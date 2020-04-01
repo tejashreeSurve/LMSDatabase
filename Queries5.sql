@@ -15,13 +15,23 @@ end$$
 DELIMITER ;
 
 
+-- buddy and ideation engineer assign to candidate id = 6
+delimiter //
+create procedure buddy_ideation_engg()
+begin 
+select fellowshipcandidate.id ,fellowshipcandidate.FirstName,candidatetechstackassig.requirement_id,companyrequirement.ideation_engg_id,mentor.mentor_name,companyrequirement.buddy_engg_id
+from (((candidatetechstackassig inner join  fellowshipcandidate on fellowshipcandidate.Id= candidatetechstackassig.candidate_id) inner join
+companyrequirement on candidatetechstackassig.requirement_id =companyrequirement.comp_req_id ) inner join mentor on companyrequirement.ideation_engg_id=mentor.mentor_id)
+where  fellowshipcandidate.id = 6;
+end //
 
-
-
-
-
-
-
+-- candidate related to pune lab 
+delimiter //
+create procedure candidaterelatedlab()
+select fellowshipcandidate.id,fellowshipcandidate.FirstName,fellowshipcandidate.HiredCity
+from fellowshipcandidate
+where HiredCity ='pune';
+end //
 
 ALTER TABLE candidatesPersonalDetailsCheck 
 ADD  lastUpdUser int after lastUpdStamp;
@@ -29,6 +39,32 @@ ADD  lastUpdUser int after lastUpdStamp;
 ALTER TABLE companyRequirement
 add  foreign key  (buddy_engg_id) REFERENCES mentor(mentor_id); 
 select * from mentor;
+
+ALTER TABLE appparameters
+add  foreign key  (creator_user) REFERENCES userroles(id);
+
+use lms;
+
+ALTER TABLE fellowshipcandidate
+ADD PRIMARY KEY  (Id);
+
+alter table companyrequirement
+add constraint foreign key (creator_user) references userroles(id);
+
+alter table companyrequirement
+add constraint foreign key (buddy_engg_id) references  mentor(mentor_id);
+
+alter table makerprogram
+add column  tech_type_id int after tech_stack_id;
+
+alter table makerprogram 
+drop column tech_type_id;
+
+select * from companyrequirement;
+
+
+alter table  candidatemachinelog
+add constraint primary key auto_increment (Id);
 
 select mentor.mentor_id,mentor.mentor_name,mentor.mentor_type,mentorTechStack.mentor_id,
 mentorTechStack.tech_stack_id,techStack.tech_name

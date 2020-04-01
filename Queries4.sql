@@ -94,6 +94,7 @@ DELIMITER ;
 
 
 call lms.candidateHavingJavaTech();
+call lms.deployedCandidate();
 
 drop procedure buddyIdeationCandidateID;
 delimiter //
@@ -157,7 +158,7 @@ where  candidateMachineLog.DateAndTime <= '2019-10-21 09:00:00');
 
 use LMS;
 -- candidate who came early for day
-select distinct   FellowshipCandidate.Id,FellowshipCandidate.FirstName
+select distinct   FellowshipCandidate.Id,FellowshipCandidate.FirstName,FellowshipCandidate.LastName
 from (FellowshipCandidate inner join candidateMachineLog on candidateMachineLog.Id = FellowshipCandidate.Id)
 where  DateAndTime <= '2019-10-21 09:00:00' ;
 

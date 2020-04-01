@@ -78,7 +78,7 @@ where  DateAndTime >= '2019-10-21 09:00:00' );
 
 Explain select DateAndTime,Id from candidateMachineLog;
 
-
+call deployedCandidate();
 
 
 -- create procedure for candidate having java techanology

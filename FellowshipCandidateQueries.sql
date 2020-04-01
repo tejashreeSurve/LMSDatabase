@@ -1,7 +1,9 @@
 ALTER TABLE candidatesPersonalDetailsCheck
 DROP COLUMN lastUpdUser;
 
+use lms;
 select * from candidatesPersonalDetailsCheck;techType
+ 
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidateHavingJavaTech`()
@@ -12,7 +14,7 @@ from (((companyRequirement inner join  candidateTechStackAssig on companyRequire
 inner join techType on techType.tech_type_id=companyRequirement.tech_type_id))inner join FellowshipCandidate on candidateTechStackAssig.candidate_id=FellowshipCandidate.id
 where techType.type_name='java';
 end$$
-DELIMITER ;
+delimiter;
 
 
 
@@ -35,6 +37,7 @@ mentorTechStack.tech_stack_id,techStack.tech_name
 from ((mentor inner join mentorTechStack on mentorTechStack.mentor_id = mentor.mentor_id)
 inner join techStack on techStack.tech_stack_id = mentorTechStack.tech_stack_id)
 where techStack.tech_name = "java";
+
 
 call candidateTechNotAssign();
 
