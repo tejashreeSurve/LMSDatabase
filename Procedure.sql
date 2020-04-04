@@ -1,3 +1,6 @@
+
+
+-- name and id of buddy ideation engg assign for candidate id = 6
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buddy_ideation_engg`()
 begin 
@@ -8,7 +11,7 @@ where  fellowshipcandidate.id = 6;
 end$$
 DELIMITER ;
 
-
+-- name and id of buddy ideation engg assign for candidate id = 6 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `buddyIdeationEnggforCandidate`()
 begin 
@@ -19,7 +22,7 @@ where  fellowshipcandidate.id = 6;
 end$$
 DELIMITER ;
 
-
+-- candidate who come early on current day i.e current date  get from system
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidate_come_early_on_currentDay`()
 BEGIN
@@ -30,6 +33,7 @@ where cast(candidatemachinelog.dateandtime as time ) <='09:00:00'  and  cast(can
 END$$
 DELIMITER ;
 
+-- candidate who come late on current date 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidate_come_late_on_currentDay`()
 BEGIN
@@ -39,6 +43,7 @@ where cast(candidatemachinelog.dateandtime as time ) <='09:00:00'  and  cast(can
 END$$
 DELIMITER ;
 
+-- candidate who come early on  yesterday as per current date using subdate command
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidate_gone_early_yeasterday`()
 BEGIN
@@ -51,6 +56,7 @@ where  cast(dateandtime as date )  = (select subdate(current_date(),1)) and  cas
 END$$
 DELIMITER ;
 
+-- candidate who come early today as per current date of system 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidateComeEarlyToday`()
 BEGIN
@@ -60,7 +66,7 @@ where  DateAndTime <= '2019-10-21 09:00:00' ;
 END$$
 DELIMITER ;
 
-
+-- candidate who has assign java technology 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidateHavingJavaTech`()
 begin
@@ -72,6 +78,7 @@ where techType.type_name='java';
 end$$
 DELIMITER ;
 
+-- candidate who as assign java technology on candidate machine log
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidateHavingJavaTechOnMLF`()
 begin
@@ -82,7 +89,7 @@ where candidatemachinelog.technology = "java";
 end$$
 DELIMITER ;
 
-
+-- candidate who present on current day
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidatePresenOnCurrentDay`()
 BEGIN
@@ -91,7 +98,7 @@ where cast(dateandtime as date )  = (select current_date());
 END$$
 DELIMITER ;
 
-
+-- candidate who has present on current date
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidatePresentOnDate`()
 begin
@@ -101,7 +108,7 @@ where candidatemachinelog.dateandtime like  '2019-10-21%';
 end$$
 DELIMITER ;
 
-
+-- candidate who related to pune lab
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidaterelatedlab`()
 select fellowshipcandidate.id,fellowshipcandidate.FirstName,fellowshipcandidate.HiredCity
@@ -109,6 +116,7 @@ from fellowshipcandidate
 where HiredCity ='pune';$$
 DELIMITER ;
 
+-- technology is not assign to candidate 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `candidateTechNotAssign`()
 begin 
@@ -118,7 +126,7 @@ candidatetechstackassig on candidatetechstackassig.candidate_id= fellowshipcandi
 end$$
 DELIMITER ;
 
-
+-- candidate who has deployed till date
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deployedCandidate`()
 begin
@@ -128,6 +136,7 @@ where FellowshipCandidate.HiredDate<='2020-02-27';
 end$$
 DELIMITER ;
 
+-- ideation and mentor engg who have assign java technology 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `mentorAndIdeationHavingJavaTech`()
 begin
@@ -138,6 +147,7 @@ where techstack.tech_name = 'java' ;
 end$$
 DELIMITER ;
 
+-- mentor related to mumbai lab buddy_ideation_engg
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `mentorRelatedLab`()
 begin 
